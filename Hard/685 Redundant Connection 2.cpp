@@ -12,14 +12,6 @@ public:
         }
     }
     
-    int Find(int i)  {
-        if(i == parent[i]) return i;
-        
-        int j = Find(parent[i]);
-        parent[i] = j;
-        return j;
-    }
-    
     int FindRoot(int i)  {
         if(i == root[i]) return i;
         
@@ -71,10 +63,9 @@ public:
             int v1 = nodesToCheck[0];
             int v2 = nodesToCheck[1];
 
-            if(obj->Find(v1) == obj->Find(twoEdges)) return {v1,twoEdges};
-            else return {v2,twoEdges};
+            if(obj->FindRoot(v2) == obj->FindRoot(twoEdges)) return {v2,twoEdges};
+            else return {v1,twoEdges};
         }
         return toRemove;
-        
     }
 };
